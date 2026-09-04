@@ -1,0 +1,5 @@
+pandas
+opencv-python
+mediapipe
+joblib
+scikit-learn
