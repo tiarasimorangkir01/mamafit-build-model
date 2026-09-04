@@ -36,3 +36,15 @@ Model yang digunakan adalah Random Forest Classifier.
 
 File model:
 `model/mama_fit_mirror.pkl`
+
+## Dataset
+
+Dataset berisi data landmark tubuh yang diperoleh dari MediaPipe Pose.
+
+Setiap frame menghasilkan 33 landmark tubuh dengan 4 nilai:
+- x
+- y
+- z
+- visibility
+
+Sehingga total terdapat 132 fitur untuk setiap frame.
