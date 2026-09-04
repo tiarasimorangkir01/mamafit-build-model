@@ -1,0 +1,182 @@
+command 
+python -c "import pandas as pd; df=pd.read_csv('dataset.csv'); print(df.shape); print(df.head())"
+(2449, 133)
+        x_0       y_0       z_0  ...      z_32  visibility_32       label
+0  0.510063  0.193504 -0.482608  ... -0.438924       0.561586  trimester1
+1  0.510126  0.193503 -0.471458  ... -0.438691       0.553468  trimester1
+2  0.510164  0.193520 -0.441320  ... -0.438778       0.543125  trimester1
+3  0.510222  0.193588 -0.425461  ... -0.436079       0.535818  trimester1
+4  0.510430  0.193629 -0.398800  ... -0.432372       0.528066  trimester1
+
+[5 rows x 133 columns]
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+command 
+python collect_6_gerakan.py
+==============================
+DATASET SELESAI
+Total data: 2007
+File: dataset_6_gerakan.csv
+==============================
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+command
+python train_model.py
+Sedang melatih AI...
+
+==============================
+HASIL TRAINING
+==============================
+Akurasi: 100.00%
+
+              precision    recall  f1-score   support
+
+   gerakan_1       1.00      1.00      1.00        83
+   gerakan_2       1.00      1.00      1.00       123
+   gerakan_3       1.00      1.00      1.00        64
+   gerakan_4       1.00      1.00      1.00        64
+   gerakan_5       1.00      1.00      1.00        32
+   gerakan_6       1.00      1.00      1.00        36
+
+    accuracy                           1.00       402
+   macro avg       1.00      1.00      1.00       402
+weighted avg       1.00      1.00      1.00       402
+
+==============================
+MODEL BERHASIL DISIMPAN
+File: mama_fit_model.pkl
+==============================
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+command 
+python predict.py
+  
+
+==============================
+HASIL TEST
+==============================
+gerakan_1: 99.40%
+gerakan_5: 0.60%
+==============================
+----------------------------------------------------------------------------------------------------------------------------------------
+command
+ python test_model.py
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+WARNING: Logging before InitGoogle() is written to STDERR
+W0000 00:00:1787827031.779933   11416 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1787827031.792930   11416 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1787827031.969114    9736 landmark_projection_calculator.cc:81] Using NORM_RECT withoutIMAGE_DIMENSIONS is only supported for the square ROI. Provide IMAGE_DIMENSIONS or use PROJECTION_MATRIX.
+
+==============================
+HASIL TEST
+==============================
+gerakan_1: 96.18%
+gerakan_6: 3.82%
+==============================
+----------------------------------------------------------------------------------------------------------------------------------------
+command 
+python -c "import pandas as pd; df=pd.read_csv('dataset_6_gerakan.csv'); print(df['label'].value_counts())"
+label
+gerakan_2    615
+gerakan_1    417
+gerakan_3    318
+gerakan_4    318
+gerakan_6    179
+gerakan_5    160
+Name: count, dtype: int64
+----------------------------------------------------------------------------------------------------------------------------------------
+command 
+python extract_angles.py
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+WARNING: Logging before InitGoogle() is written to STDERR
+W0000 00:00:1787827733.718733   18564 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1787827733.729960   21596 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+Video tidak bisa dibuka!
+----------------------------------------------------------------------------------------------------------------------------------------
+command
+ python extract_angles.py
+
+==============================
+ANGLE REFERENCE SELESAI
+==============================
+Total frame: 2007
+File: angle_reference.csv
+==============================
+----------------------------------------------------------------------------------------------------------------------------------------
+command
+ python analyze_angles.py
+
+==============================
+gerakan_1
+==============================
+left_elbow       min=  44.4 max= 179.9 avg= 166.3
+right_elbow      min= 126.7 max= 180.0 avg= 173.5
+left_shoulder    min=   1.0 max=  38.3 avg=   8.7
+right_shoulder   min=   0.4 max=  33.0 avg=  14.7
+left_hip         min=  20.7 max= 111.5 avg=  92.6
+right_hip        min=   5.5 max= 124.5 avg=  91.9
+left_knee        min=   0.3 max= 180.0 avg= 141.3
+right_knee       min=   0.7 max= 178.8 avg= 134.3
+
+==============================
+gerakan_2
+==============================
+left_elbow       min=  14.8 max= 180.0 avg= 166.1
+right_elbow      min= 151.8 max= 179.9 avg= 171.2
+left_shoulder    min=  12.3 max=  25.2 avg=  17.3
+right_shoulder   min=  14.2 max=  26.7 avg=  16.9
+left_hip         min=  52.1 max= 109.9 avg=  84.7
+right_hip        min=  63.1 max= 108.3 avg=  86.2
+left_knee        min=  10.7 max=  47.3 avg=  34.4
+right_knee       min=  23.7 max=  57.6 avg=  41.3
+
+==============================
+gerakan_3
+==============================
+left_elbow       min=  14.8 max= 178.4 avg= 141.2
+right_elbow      min=  12.7 max= 180.0 avg= 135.2
+left_shoulder    min=   1.8 max= 180.0 avg=  64.8
+right_shoulder   min=   1.4 max= 179.8 avg=  89.6
+left_hip         min=  73.5 max=  99.2 avg=  86.2
+right_hip        min=  75.7 max= 102.6 avg=  91.5
+left_knee        min=  26.4 max=  42.3 avg=  34.4
+right_knee       min=  37.7 max=  54.7 avg=  45.7
+
+==============================
+gerakan_4
+==============================
+left_elbow       min=   1.9 max= 128.7 avg=  48.5
+right_elbow      min=   0.8 max= 106.0 avg=  45.2
+left_shoulder    min=   3.3 max=  90.9 avg=  33.8
+right_shoulder   min=   6.7 max=  78.0 avg=  33.7
+left_hip         min=  73.0 max=  99.5 avg=  87.0
+right_hip        min=  77.8 max= 106.7 avg=  92.8
+left_knee        min=  25.7 max=  58.8 avg=  42.8
+right_knee       min=  39.7 max=  66.1 avg=  53.8
+
+==============================
+gerakan_5
+==============================
+left_elbow       min=   2.9 max= 179.8 avg= 125.4
+right_elbow      min=   6.4 max= 177.7 avg= 128.1
+left_shoulder    min=   0.0 max= 177.4 avg=  59.2
+right_shoulder   min=   1.1 max= 179.9 avg=  79.5
+left_hip         min=  66.6 max=  94.4 avg=  81.0
+right_hip        min=  82.3 max= 138.2 avg= 100.6
+left_knee        min=  22.9 max=  46.5 avg=  36.3
+right_knee       min=  36.7 max=  79.5 avg=  52.4
+
+==============================
+gerakan_6
+==============================
+left_elbow       min=   1.4 max= 179.9 avg= 129.3
+right_elbow      min=   2.2 max= 179.8 avg= 137.8
+left_shoulder    min=   2.5 max= 179.9 avg=  54.2
+right_shoulder   min=  10.3 max= 179.2 avg=  46.8
+left_hip         min=  70.1 max= 118.7 avg=  99.8
+right_hip        min=  76.6 max= 127.7 avg=  99.5
+left_knee        min=  28.9 max=  56.0 avg=  46.3
+right_knee       min=  42.4 max=  67.7 avg=  52.0
+
+ 
